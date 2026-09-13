@@ -7,6 +7,13 @@ export default function WorkGrid() {
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Supabase may return tags as a JS array OR a Postgres string like {HTML5,CSS3}
+  const parseTags = (tags: any): string[] => {
+    if (Array.isArray(tags)) return tags;
+    if (typeof tags === "string") return tags.replace(/[{}]/g, "").split(",").filter(Boolean);
+    return [];
+  };
+
   // Tracks which single card is "opened" on tap (mobile). null = none opened.
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
@@ -79,7 +86,7 @@ export default function WorkGrid() {
                 {/* Title */}
                 <div className="relative z-10">
                   <p className={`text-[9px] font-black uppercase tracking-[0.2em] mb-2 transition-colors ${isOpen ? "text-white/60" : "opacity-40"} lg:group-hover:text-white/60`}>
-                    {Array.isArray(project.tags) ? project.tags[0] : project.type}
+                    {parseTags(project.tags)[0] ?? project.type}
                   </p>
                   <h3 className={`text-3xl md:text-4xl font-black uppercase leading-[0.9] tracking-tighter transition-all ${isOpen ? "text-white italic" : ""} lg:group-hover:text-white lg:group-hover:italic`}>
                     {project.title}
@@ -98,7 +105,7 @@ export default function WorkGrid() {
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {project.tags?.slice(0, 3).map((tag: string) => (
+                    {parseTags(project.tags).slice(0, 3).map((tag: string) => (
                       <span
                         key={tag}
                         className={`text-[8px] font-black uppercase border px-2 py-1 transition-colors ${isOpen ? "border-white/20 text-white/50" : "border-black/20 text-black/50"
