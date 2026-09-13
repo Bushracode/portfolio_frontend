@@ -11,7 +11,7 @@ export default function WorkGrid() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://portfoliobackend-production-0d7c.up.railway.app";
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "portfolio-backend-production-9bbc.up.railway.app";
 
     fetch(`${apiBaseUrl}/api/projects`)
       .then((res) => res.json())
@@ -92,9 +92,8 @@ export default function WorkGrid() {
                     {project.tags?.slice(0, 3).map((tag: string) => (
                       <span
                         key={tag}
-                        className={`text-[8px] font-black uppercase border px-2 py-1 transition-colors ${
-                          isOpen ? "border-white/20 text-white/50" : "border-black/20 text-black/50"
-                        } lg:group-hover:border-white/20 lg:group-hover:text-white/50`}
+                        className={`text-[8px] font-black uppercase border px-2 py-1 transition-colors ${isOpen ? "border-white/20 text-white/50" : "border-black/20 text-black/50"
+                          } lg:group-hover:border-white/20 lg:group-hover:text-white/50`}
                       >
                         {tag}
                       </span>
@@ -112,13 +111,11 @@ export default function WorkGrid() {
                       e.stopPropagation();
                       if (!hasLink) e.preventDefault();
                     }}
-                    className={`flex justify-between items-center border-t pt-4 transition-colors ${
-                      isOpen ? "border-white/10" : "border-black/10"
-                    } lg:group-hover:border-white/10 ${hasLink ? "" : "pointer-events-none opacity-50"}`}
+                    className={`flex justify-between items-center border-t pt-4 transition-colors ${isOpen ? "border-white/10" : "border-black/10"
+                      } lg:group-hover:border-white/10 ${hasLink ? "" : "pointer-events-none opacity-50"}`}
                   >
-                    <span className={`text-[9px] font-black uppercase tracking-widest transition-colors ${
-                      isOpen ? "text-white/70" : "opacity-40"
-                    } lg:group-hover:text-white/40`}>
+                    <span className={`text-[9px] font-black uppercase tracking-widest transition-colors ${isOpen ? "text-white/70" : "opacity-40"
+                      } lg:group-hover:text-white/40`}>
                       {hasLink ? "Press to open GitHub repo" : "Repo link coming soon"}
                     </span>
                     <ArrowUpRight className={`w-5 h-5 transition-transform ${isOpen ? "text-white" : ""} lg:group-hover:text-white lg:group-hover:translate-x-1 lg:group-hover:-translate-y-1`} />

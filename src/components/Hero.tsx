@@ -48,7 +48,7 @@ export default function Hero() {
           <motion.h1
             className="text-6xl sm:text-7xl lg:text-[10vw] font-black leading-[0.8] tracking-tighter uppercase"
           >
-            Zunair.<br />
+            Bushra.<br />
             <span className="text-[#2D4F3E] italic">I Build</span> <br />
             Smart<span className="stroke-text"> Systems</span>
           </motion.h1>
