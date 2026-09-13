@@ -4,23 +4,32 @@ import { ArrowUpRight, Cpu, Bot } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function WorkGrid() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Tracks which single card is "opened" on tap (mobile). null = none opened.
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "portfolio-backend-production-9bbc.up.railway.app";
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://portfolio-backend-production-9bbc.up.railway.app";
 
     fetch(`${apiBaseUrl}/api/projects`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          return res.json();
+        }
+        throw new Error("Received non-JSON response from backend");
+      })
       .then((data) => {
-        setProjects(data);
+        if (Array.isArray(data)) {
+          setProjects(data);
+        }
         setLoading(false);
       })
       .catch((err) => {
-        console.error("FastAPI Error:", err);
+        console.error("FastAPI Fetch Error:", err);
         setLoading(false);
       });
   }, []);

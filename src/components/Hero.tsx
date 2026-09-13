@@ -37,7 +37,7 @@ export default function Hero() {
 
         <div className="flex gap-6 items-center">
           <a href="https://github.com/Bushracode" target="_blank" className="hover:text-[#2D4F3E] transition-all hover:scale-110"><GithubIcon size={18} /></a>
-          <a href="www.linkedin.com/in/bushra-m-73b493411" target="_blank" className="hover:text-[#2D4F3E] transition-all hover:scale-110"><LinkedinIcon size={18} /></a>
+          <a href="https://www.linkedin.com/in/bushra-m-73b493411" target="_blank" className="hover:text-[#2D4F3E] transition-all hover:scale-110"><LinkedinIcon size={18} /></a>
           <a href="mailto:manzoorbushra207@gmail.com" className="hover:text-[#2D4F3E] transition-all hover:scale-110"><Mail size={18} /></a>
         </div>
       </div>

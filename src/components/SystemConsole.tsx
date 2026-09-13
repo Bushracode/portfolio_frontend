@@ -5,10 +5,17 @@ export default function SystemConsole() {
     const [data, setData] = useState<any>(null);
 
     useEffect(() => {
-        const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://portfoliobackend-production-0d7c.up.railway.app";
+        const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://portfolio-backend-production-9bbc.up.railway.app";
 
         fetch(`${apiBaseUrl}/api/system-status`)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error("Status Error");
+                const contentType = res.headers.get("content-type");
+                if (contentType && contentType.includes("application/json")) {
+                    return res.json();
+                }
+                throw new Error("Non-JSON response");
+            })
             .then(setData)
             .catch(() => setData({ status: "Offline", current_task: "Idle" }));
     }, []);
@@ -23,8 +30,8 @@ export default function SystemConsole() {
                 <p className="text-gray-500 uppercase">Current_Task:</p>
                 <p className="mb-2 text-emerald-400">"{data?.current_task}"</p>
                 <div className="flex justify-between opacity-40 uppercase">
-                    <span>ZUNAIR_v1.0.4</span>
-                    <span>LAT: 33.6° N</span>
+                    <span>BUSHRA_v1.0.4</span>
+                    <span>CUST / ISLAMABAD, PK</span>
                 </div>
             </div>
         </div>

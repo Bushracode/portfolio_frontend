@@ -9,7 +9,7 @@ export default function AgentChat() {
     // the red "unread" dot permanently instead of pulsing forever.
     const [hasOpened, setHasOpened] = useState(false);
     const [messages, setMessages] = useState([
-        { role: "agent", content: "z-agent summoned. I am the virtual agent for Muhammad Zunair. How can I assist you with the architecture today?" }
+        { role: "agent", content: "b-agent summoned. I am the virtual agent for Bushra Manzoor. How can I assist you with her portfolio today?" }
     ]);
     const [input, setInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
@@ -33,17 +33,18 @@ export default function AgentChat() {
         setIsTyping(true);
 
         try {
-            const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://portfoliobackend-production-0d7c.up.railway.app";
+            const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "https://portfolio-backend-production-9bbc.up.railway.app";
             const response = await fetch(`${apiBaseUrl}/api/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: input }),
             });
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.detail || "Connection Failed");
+            const contentType = response.headers.get("content-type");
+            if (!response.ok || !contentType || !contentType.includes("application/json")) {
+                const text = await response.text();
+                throw new Error(`Server response error (${response.status}): Non-JSON response`);
             }
+            const data = await response.json();
 
             setMessages((prev) => [...prev, { role: "agent", content: data.response }]);
         } catch (error: any) {
@@ -77,7 +78,7 @@ export default function AgentChat() {
                                     <Terminal size={14} className="text-white" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] leading-none">Z-Agent</span>
+                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] leading-none">B-Agent</span>
                                     <span className="text-[8px] font-mono opacity-60">System Online</span>
                                 </div>
                             </div>
@@ -119,7 +120,7 @@ export default function AgentChat() {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                                    placeholder="Ask a question about Zunair"
+                                    placeholder="Ask a question about Bushra"
                                     className="w-full bg-white border border-black/10 rounded-xl py-3 pl-5 pr-12 text-[11px] font-mono text-[#1A1A1A] placeholder-black/30 focus:outline-none focus:border-[#2D4F3E] transition-all"
                                 />
                                 <button

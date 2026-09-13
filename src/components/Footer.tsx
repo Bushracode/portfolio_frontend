@@ -6,7 +6,7 @@ export default function Footer() {
     // CONFIGURATION: Replace these with your real links
     const MY_EMAIL = "manzoorbushra207@gmail.com";
     const GITHUB_URL = "https://github.com/Bushracode";
-    const LINKEDIN_URL = "www.linkedin.com/in/bushra-m-73b493411";
+    const LINKEDIN_URL = "https://www.linkedin.com/in/bushra-m-73b493411";
     const RESUME_URL = "/resume.pdf"; // Put your resume PDF in the 'public' folder and name it resume.pdf
 
     return (
@@ -40,7 +40,7 @@ export default function Footer() {
                 {/* SOCIAL & RESUME LINKS */}
                 <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
                     <div className="text-[10px] font-black uppercase tracking-widest text-gray-500">
-                        © 2026 ZUNAIR.SYSTEMS — ALL RIGHTS RESERVED
+                        © 2026 BUSHRA.SYSTEMS — ALL RIGHTS RESERVED
                     </div>
 
                     <div className="flex gap-10 items-center">

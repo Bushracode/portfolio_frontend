@@ -38,13 +38,13 @@ export default function About() {
                         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 w-full min-w-0">
                             <div className="w-full md:basis-1/2 space-y-6 text-xl font-medium leading-snug text-gray-800 min-w-0">
                                 <p>
-                                    As a Comuter Science Entusiast, I spend my time split between low-level fundamentals in <span className="underline decoration-[#2D4F3E] decoration-2">C++</span> and building modern <span className="text-[#2D4F3E] font-bold">applications</span> with React and Python.
+                                    As a final-semester Computer Science student at <span className="underline decoration-[#2D4F3E] decoration-2">Capital University of Science and Technology (CUST)</span>, I specialize in building responsive web applications with <span className="text-[#2D4F3E] font-bold">React & Next.js</span> and containerized APIs with FastAPI.
                                 </p>
                             </div>
 
                             <div className="w-full md:basis-1/2 space-y-6 text-xl font-medium leading-snug text-gray-800 min-w-0">
                                 <p>
-                                    I build things that perform as well as they look.
+                                    I build accessible, stateful systems that perform as well as they look.
                                 </p>
                             </div>
                         </div>
